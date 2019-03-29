@@ -8,6 +8,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule, TodoListPageModule ]
+  exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

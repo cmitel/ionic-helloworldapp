@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item *ngFor="let task of taskTab">
+  <ion-item *ngFor="let task of taskTab | reverseTab">
     <app-todo-task [task]="task"></app-todo-task>
   </ion-item>
 </ion-list>

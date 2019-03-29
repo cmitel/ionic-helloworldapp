@@ -10,6 +10,7 @@ export class CreateTaskComponent implements OnInit {
 
   @Output() newTask: EventEmitter<TodoTask> = new EventEmitter();
 
+  clearAction: Boolean = true;
   enableButton: Boolean = false;
   taskContent: String = '';
 
@@ -24,6 +25,7 @@ export class CreateTaskComponent implements OnInit {
 
   onAddTask() {
     this.newTask.emit( new TodoTask(this.taskContent) );
+    this.clearAction = !this.clearAction;
   }
 
 }

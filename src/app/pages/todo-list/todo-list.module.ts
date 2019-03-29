@@ -11,6 +11,7 @@ import { AddButtonComponent } from './create-task/add-button/add-button.componen
 import { InputTextComponent } from './create-task/input-text/input-text.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { TodoTaskComponent } from './todo-task/todo-task.component';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    PipesModule
   ],
   declarations: [TodoListPage, CreateTaskComponent, AddButtonComponent, InputTextComponent, TaskListComponent, TodoTaskComponent]
 })
