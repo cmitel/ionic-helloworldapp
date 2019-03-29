@@ -1,11 +1,5 @@
 <ion-list>
-  <ion-item>
-    <app-todo-task></app-todo-task>
-  </ion-item>
-  <ion-item>
-    <app-todo-task></app-todo-task>
-  </ion-item>
-  <ion-item>
-    <app-todo-task></app-todo-task>
+  <ion-item *ngFor="let task of taskTab">
+    <app-todo-task [task]="task"></app-todo-task>
   </ion-item>
 </ion-list>
