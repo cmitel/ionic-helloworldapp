@@ -1,4 +1,4 @@
 <div>
-  <app-add-button></app-add-button>
-  <app-input-text></app-input-text>
+  <app-add-button [enableBtn]="enableButton" (pressed)="onAddTask()"></app-add-button>
+  <app-input-text (typedTxt)="onTypedText($event)"></app-input-text>
 </div>
