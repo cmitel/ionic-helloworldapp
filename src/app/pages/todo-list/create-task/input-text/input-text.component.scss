@@ -3,4 +3,12 @@ ion-item {
   --highlight-color-focused: var(--ion-color-brand);
   --highlight-color-valid: var(--ion-color-brand);
   --highlight-color-invalid: var(--ion-color-brand);
+
+  --padding-start: 0px;
+
+  ion-input {
+    font-size: 12px;
+    --color: var(--ion-color-step-800);
+  }
+
 }

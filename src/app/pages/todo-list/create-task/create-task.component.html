@@ -4,7 +4,7 @@
       <ion-col size="2" class="ion-align-items-center">
         <app-add-button [enableBtn]="enableButton" (pressed)="onAddTask()"></app-add-button>
       </ion-col>
-      <ion-col size="10">
+      <ion-col size="10" class="ion-justify-content-start">
         <app-input-text (typedTxt)="onTypedText($event)" [clear]="clearAction" [tutu]="tutu"></app-input-text>
       </ion-col>
     </ion-row>
