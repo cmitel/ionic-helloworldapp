@@ -4,7 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding scrollY="false">
   <app-create-task (newTask)="onNewTask($event)"></app-create-task>
-  <app-task-list [taskTab]="taskTab$ | async"></app-task-list>
+  <div class="list-container">
+    <div class="w-100">
+        <app-task-list [taskTab]="taskTab$ | async"></app-task-list>
+    </div>
+  </div>
 </ion-content>
