@@ -12,6 +12,8 @@ export class TodoTaskComponent implements OnInit {
   @Output() delete: EventEmitter<TodoTask> = new EventEmitter();
   @Output() check: EventEmitter<TodoTask> = new EventEmitter();
 
+  isDone = false;
+
   constructor() { }
 
   ngOnInit() {}
@@ -21,6 +23,7 @@ export class TodoTaskComponent implements OnInit {
   }
 
   onCheck(): void {
+    this.isDone = true;
     this.check.emit(this.task);
   }
 
