@@ -1,27 +1,26 @@
+import { AddButtonComponent } from './add-button.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddButtonPage } from './add-button.page';
-
-describe('AddButtonPage', () => {
-  let component: AddButtonPage;
-  let fixture: ComponentFixture<AddButtonPage>;
+describe('AddButtonComponent', () => {
+  let component: AddButtonComponent;
+  let fixture: ComponentFixture<AddButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddButtonPage ],
+      declarations: [ AddButtonComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddButtonPage);
+    fixture = TestBed.createComponent( AddButtonComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should exists', () => {
     expect(component).toBeTruthy();
   });
 });

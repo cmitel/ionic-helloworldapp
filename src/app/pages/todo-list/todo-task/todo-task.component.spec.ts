@@ -1,27 +1,26 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TodoTaskComponent } from './todo-task.component';
 
-import { TodoTaskPage } from './todo-task.page';
-
-describe('TodoTaskPage', () => {
-  let component: TodoTaskPage;
-  let fixture: ComponentFixture<TodoTaskPage>;
+describe('TodoTaskComponent', () => {
+  let component: TodoTaskComponent;
+  let fixture: ComponentFixture<TodoTaskComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoTaskPage ],
+      declarations: [ TodoTaskComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoTaskPage);
+    fixture = TestBed.createComponent(TodoTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should exist', () => {
     expect(component).toBeTruthy();
   });
 });
