@@ -1,5 +1,5 @@
 import { Subject, Observable, of } from 'rxjs';
-import { concatMap, delay, mergeMap } from 'rxjs/operators';
+import { concatMap, delay, mergeMap, take } from 'rxjs/operators';
 import { TodoTask } from 'src/app/models/todo-task.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskStorage } from 'src/app/services/storage/task-storage.service';
@@ -38,16 +38,15 @@ export class TaskListComponent implements OnInit {
 
       if (position > -1) {
 
-        const subscription = this.taskStorage.deleteTask(v.task).subscribe(res => {
+        this.taskStorage.deleteTask(v.task)
+        .pipe(take(1))
+        .subscribe(res => {
 
           if (res) {
             this.taskTab.splice(position, 1);
           } else {
             console.error('Unable to remove task');
           }
-
-          subscription.unsubscribe();
-
         });
       }
     });

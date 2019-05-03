@@ -28,11 +28,10 @@ describe('TodoListPage', () => {
   }));
 
   beforeEach(() => {
+    taskStorageSpy = TestBed.get(TaskStorage);
     fixture = TestBed.createComponent(TodoListPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    taskStorageSpy = TestBed.get(TaskStorage);
   });
 
   it('should exist', () => {
