@@ -9,7 +9,6 @@ export class InputTextComponent implements OnInit, OnChanges {
 
   @Output() typedTxt = new EventEmitter<String>();
   @Input() clear: Boolean;
-  @Input() tutu: Boolean;
 
   content: String = '';
 
