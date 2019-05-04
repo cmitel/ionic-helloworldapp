@@ -72,9 +72,34 @@ describe('TaskListComponent', () => {
     expect(hostElement.querySelectorAll('app-todo-task').length).toEqual(2);
   });
 
-  it('should update the list of task on check task event', () => {
-    expect(true).toBeDefined();
-  });
+  it('should update the list of task on check task event', fakeAsync(() => {
+
+    const hostElement: HTMLElement = fixture.nativeElement;
+
+    const nextSpy = spyOn(component.changeListSubject, 'next').and.callThrough();
+    spyOn(console, 'error').and.callThrough();
+
+    const data = [ new TodoTask('task1'), new TodoTask('task2') ];
+
+    component.taskTab = data;
+
+    fixture.detectChanges();
+
+    expect(component.taskTab.length).toEqual(2);
+
+    component.onCheckTask(data[0], 0);
+    fixture.detectChanges();
+
+    tick(3000);
+    fixture.detectChanges();
+
+    expect(console.error).not.toHaveBeenCalled();
+    expect(taskStorageSpy.deleteTask).toHaveBeenCalled();
+    expect(nextSpy).toHaveBeenCalled();
+    expect(component.taskTab.length).toEqual(1);
+    expect(component.taskTab[0].toString()).toEqual('task2');
+    expect(hostElement.querySelectorAll('app-todo-task').length).toEqual(1);
+  }));
 
   it('should update the list of task on delete task event', fakeAsync(() => {
 
