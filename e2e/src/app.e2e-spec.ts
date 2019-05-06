@@ -7,8 +7,8 @@ describe('new App', () => {
     page = new AppPage();
   });
 
-  it('should be blank', () => {
+  it('should not be blank', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toContain('The world is your oyster.');
+    expect(page.getTitleHeader()).toContain('TodoList');
   });
 });
