@@ -1,12 +1,10 @@
 import { browser, by, element } from 'protractor';
+import { PageObjectBase } from './base.po';
 
-export class AppPage {
+export class AppPage extends PageObjectBase {
 
-  navigateTo() {
-    return browser.get('/');
+  constructor() {
+    super('app-todo-list', '/');
   }
 
-  getTitleHeader() {
-    return element(by.deepCss('app-root ion-title')).getText();
-  }
 }
