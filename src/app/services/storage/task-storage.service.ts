@@ -70,8 +70,6 @@ export class TaskStorage {
 
       const exist = await this.storage.get(task.getDate().getTime().toString());
 
-      console.log('Exist :: ', exist);
-
       if (exist) {
         await this.storage.remove(task.getDate().getTime().toString());
         return true;

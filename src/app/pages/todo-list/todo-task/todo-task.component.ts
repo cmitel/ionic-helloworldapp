@@ -8,9 +8,11 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class TodoTaskComponent implements OnInit {
 
-  @Input() task: TodoTask;
+  @Input() task: TodoTask = null;
   @Output() delete: EventEmitter<TodoTask> = new EventEmitter();
   @Output() check: EventEmitter<TodoTask> = new EventEmitter();
+
+  isDone = false;
 
   constructor() { }
 
@@ -21,6 +23,7 @@ export class TodoTaskComponent implements OnInit {
   }
 
   onCheck(): void {
+    this.isDone = true;
     this.check.emit(this.task);
   }
 

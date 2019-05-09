@@ -8,8 +8,7 @@ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChange
 export class InputTextComponent implements OnInit, OnChanges {
 
   @Output() typedTxt = new EventEmitter<String>();
-  @Input() clear: Boolean;
-  @Input() tutu: Boolean;
+  @Input() clear: Boolean = false;
 
   content: String = '';
 

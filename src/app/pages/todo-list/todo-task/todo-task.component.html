@@ -1,11 +1,17 @@
-<div>
-  <p>{{ task }}</p>
-  <div>
-    <ion-button (click)="onDelete()">
-      delete
-    </ion-button>
-    <ion-button (click)="onCheck()">
-      check
-    </ion-button>
-  </div>
-</div>
+<ion-row>
+  <ion-col size="8" align-self-center>
+    <p class="text ion-no-margin ion-no-padding w-100"><ion-icon *ngIf="isDone" name="done-all" color="primary"></ion-icon> {{ task }}</p>
+  </ion-col>
+  <ion-col size="4" align-self-center *ngIf="!isDone">
+    <div class="actions-container w-100">
+      <ion-button shape="round" strong="true" slot="icon-only" (click)="onDelete()" size="small" fill="clear"
+        color="brand">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+      <ion-button shape="round" strong="true" slot="icon-only" color="brand" (click)="onCheck()" size="small"
+        fill="clear">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-col>
+</ion-row>

@@ -1,10 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>TodoList</ion-title>
+<ion-header mode="ios">
+  <ion-toolbar mode="ios">
+    <ion-title color="brand">TodoList</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding scrollY="false">
   <app-create-task (newTask)="onNewTask($event)"></app-create-task>
-  <app-task-list [taskTab]="taskTab$ | async"></app-task-list>
+  <div class="list-container">
+    <div class="w-100">
+        <app-task-list [taskTab]="taskTab$ | async"></app-task-list>
+    </div>
+  </div>
 </ion-content>

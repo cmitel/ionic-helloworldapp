@@ -2,6 +2,7 @@ import { TodoTask } from './../../models/todo-task.model';
 import { Component, OnInit } from '@angular/core';
 import { TaskStorage } from 'src/app/services/storage/task-storage.service';
 import { Observable, of, Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todo-list',
@@ -23,24 +24,27 @@ export class TodoListPage implements OnInit {
 
   onNewTask(newTask: TodoTask): void {
 
-    const subscription = this.taskStorage.addTask(newTask).subscribe(res => {
-      if (res) {
-        this.updateList();
-      } else {
-        // todo display error
-        console.error('Unable to add task');
-      }
-
-      subscription.unsubscribe();
-    });
+    this.taskStorage.addTask(newTask)
+      .pipe(take(1))
+      .subscribe(res => {
+        if (res) {
+          this.updateList();
+        } else {
+          // todo display error
+          console.error('Unable to add task');
+        }
+      });
   }
 
   private updateList(): void {
 
-    const subscription = this.taskStorage.getTasks().subscribe(tab => {
-      this.taskTabSubject.next(tab);
-      subscription.unsubscribe();
-    });
+      this.taskStorage.getTasks()
+      .pipe(take(1))
+      .subscribe(tab => {
+        this.taskTabSubject.next(tab);
+      });
   }
+
+
 
 }

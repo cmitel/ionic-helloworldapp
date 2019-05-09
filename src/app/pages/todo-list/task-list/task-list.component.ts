@@ -1,6 +1,6 @@
 import { Subject, Observable, of } from 'rxjs';
-import { concatMap, delay, mergeMap } from 'rxjs/operators';
-import { TodoTask } from './../../../models/todo-task.model';
+import { concatMap, delay, mergeMap, take } from 'rxjs/operators';
+import { TodoTask } from 'src/app/models/todo-task.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskStorage } from 'src/app/services/storage/task-storage.service';
 
@@ -23,7 +23,7 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
 
     this.changeList$.pipe(
-      mergeMap(val => val.action === 'check' ? of(val).pipe(delay(3000)) :  of(val))
+      mergeMap(val => val.action === 'check' ? of(val).pipe(delay(3000)) : of(val))
     )
     .subscribe(v => {
 
@@ -38,22 +38,22 @@ export class TaskListComponent implements OnInit {
 
       if (position > -1) {
 
-        const subscription = this.taskStorage.deleteTask(v.task).subscribe(res => {
+        this.taskStorage.deleteTask(v.task)
+        .pipe(take(1))
+        .subscribe(res => {
 
           if (res) {
             this.taskTab.splice(position, 1);
           } else {
             console.error('Unable to remove task');
           }
-
-          subscription.unsubscribe();
-
         });
       }
     });
   }
 
   onDeleteTask(task: TodoTask, indexPosition: number): void {
+
     this.changeListSubject.next({
       action: 'delete',
       task,

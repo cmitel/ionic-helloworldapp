@@ -1,0 +1,22 @@
+.actions-container {
+  float: right;
+  display: inline-flex;
+
+  ion-button {
+    --padding-bottom: 0;
+    --padding-top: 0;
+    --padding-left: 0;
+    --padding-right: 0;
+    margin: 0;
+  }
+}
+
+.text {
+  color: var(--ion-color-step-800);
+  font-size: 12px;
+
+  ion-icon {
+    vertical-align: middle;
+    font-size: 200%;
+  }
+}

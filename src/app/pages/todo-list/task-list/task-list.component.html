@@ -1,5 +1,5 @@
 <ion-list>
   <ion-item *ngFor="let task of taskTab | reverseTab; let i = index;">
-    <app-todo-task [task]="task" (delete)="onDeleteTask($event, i)" (check)="onCheckTask($event, i)"></app-todo-task>
+    <app-todo-task [task]="task" (delete)="onDeleteTask($event, i)" (check)="onCheckTask($event, i)" class="w-100"></app-todo-task>
   </ion-item>
 </ion-list>
