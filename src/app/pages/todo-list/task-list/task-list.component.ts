@@ -2,6 +2,7 @@ import { Subject, Observable, of } from 'rxjs';
 import { concatMap, delay, mergeMap } from 'rxjs/operators';
 import { TodoTask } from './../../../models/todo-task.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { TaskStorage } from 'src/app/services/storage/task-storage.service';
 
 @Component({
   selector: 'app-task-list',
@@ -15,7 +16,9 @@ export class TaskListComponent implements OnInit {
   changeListSubject: Subject<{action: String, task: TodoTask, position: number}> = new Subject();
   changeList$: Observable<{action: String, task: TodoTask, position: number}> = this.changeListSubject.asObservable();
 
-  constructor() { }
+  constructor(
+    private readonly taskStorage: TaskStorage
+  ) { }
 
   ngOnInit() {
 
@@ -34,7 +37,18 @@ export class TaskListComponent implements OnInit {
       }
 
       if (position > -1) {
-        this.taskTab.splice(position, 1);
+
+        const subscription = this.taskStorage.deleteTask(v.task).subscribe(res => {
+
+          if (res) {
+            this.taskTab.splice(position, 1);
+          } else {
+            console.error('Unable to remove task');
+          }
+
+          subscription.unsubscribe();
+
+        });
       }
     });
   }

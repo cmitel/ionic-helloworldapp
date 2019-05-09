@@ -1,5 +1,7 @@
-import { TodoTask } from 'src/app/models/todo-task.model';
+import { TodoTask } from './../../models/todo-task.model';
 import { Component, OnInit } from '@angular/core';
+import { TaskStorage } from 'src/app/services/storage/task-storage.service';
+import { Observable, of, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,19 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListPage implements OnInit {
 
-  taskTab: TodoTask[] = [
-    new TodoTask('Go to the gym'),
-    new TodoTask('Call Adriana'),
-    new TodoTask('Buy new shoes for Kevin and Susan, because the old ones are ripped'),
-  ];
+  taskTabSubject: Subject<TodoTask[]> = new Subject();
+  taskTab$: Observable<TodoTask[]> = this.taskTabSubject.asObservable();
 
-  constructor() { }
+  constructor(
+    private readonly taskStorage: TaskStorage
+  ) { }
 
   ngOnInit() {
+    this.updateList();
   }
 
   onNewTask(newTask: TodoTask): void {
-    this.taskTab = this.taskTab.concat([ newTask ]);
+
+    const subscription = this.taskStorage.addTask(newTask).subscribe(res => {
+      if (res) {
+        this.updateList();
+      } else {
+        // todo display error
+        console.error('Unable to add task');
+      }
+
+      subscription.unsubscribe();
+    });
+  }
+
+  private updateList(): void {
+
+    const subscription = this.taskStorage.getTasks().subscribe(tab => {
+      this.taskTabSubject.next(tab);
+      subscription.unsubscribe();
+    });
   }
 
 }
