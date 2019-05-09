@@ -29,7 +29,7 @@ describe('TodoListPage', () => {
   });
 
   it('should display a blank task list by default', () => {
-    expect(page.getTaskRowsFromList().getSize()).toEqual(0);
+    expect(page.getTaskRowsFromList().count()).toEqual(0);
   });
 
 });
