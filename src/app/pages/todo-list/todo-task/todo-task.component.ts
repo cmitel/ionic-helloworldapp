@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { TodoTask } from './../../../models/todo-task.model';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-todo-task',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoTaskComponent implements OnInit {
 
+  @Input() task: TodoTask;
+  @Output() delete: EventEmitter<TodoTask> = new EventEmitter();
+  @Output() check: EventEmitter<TodoTask> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {}
+
+  onDelete(): void {
+    this.delete.emit(this.task);
+  }
+
+  onCheck(): void {
+    this.check.emit(this.task);
+  }
 
 }

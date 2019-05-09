@@ -1,5 +1,11 @@
 <div>
-    <ion-button>delete</ion-button>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quos saepe pariatur, aliquid veritatis.</p>
-    <ion-button>check</ion-button>
+  <p>{{ task }}</p>
+  <div>
+    <ion-button (click)="onDelete()">
+      delete
+    </ion-button>
+    <ion-button (click)="onCheck()">
+      check
+    </ion-button>
+  </div>
 </div>

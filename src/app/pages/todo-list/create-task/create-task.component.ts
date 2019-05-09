@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { TodoTask } from 'src/app/models/todo-task.model';
 
 @Component({
   selector: 'app-create-task',
@@ -7,8 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTaskComponent implements OnInit {
 
+  @Output() newTask: EventEmitter<TodoTask> = new EventEmitter();
+
+  clearAction: Boolean = true;
+  enableButton: Boolean = false;
+  taskContent: String = '';
+
   constructor() { }
 
   ngOnInit() {}
+
+  onTypedText(txt: String): void {
+    this.taskContent = txt;
+    this.enableButton = (txt !== '');
+  }
+
+  onAddTask() {
+    this.newTask.emit( new TodoTask(this.taskContent) );
+    this.clearAction = !this.clearAction;
+  }
 
 }
